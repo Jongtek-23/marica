@@ -18,7 +18,7 @@ void	*handler_dead(void *void_philo)
 			{
 				philo->all->est_mort = 1;
 				pthread_mutex_unlock(&philo->all->forks[philo->left]);
-				put_msg(philo, DEAD, curr_time);
+				print_phrase(philo, DEAD, curr_time);
 			}
 			pthread_mutex_unlock(&philo->all->mourir);
 			return (NULL);
