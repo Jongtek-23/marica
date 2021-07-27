@@ -18,7 +18,7 @@ int  a_manger(t_philo *philo)
 	if (philo->all->each_must_eat != -1
 			&& philo->count_eat == philo->all->each_must_eat)
 	{
-		pthread_mutex_unlock(&philo->all->each_must_eat);
+		pthread_mutex_unlock(&philo->all->manger);
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->all->manger);

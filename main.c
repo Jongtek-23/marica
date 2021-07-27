@@ -92,7 +92,7 @@ int			main(int argc, char **argv)
 		return (ft_error("Error: malloc failed\n"));
 	if (!(philos = (t_philo *)malloc((sizeof(t_philo) * all.nb_of_philos))))
 		return (1);
-	init_philos(philos, &all);
+	init_philos(&all, philos);
 	i = 0;
 	while (i < all.nb_of_philos)
 	{
