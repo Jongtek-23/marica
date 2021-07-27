@@ -32,7 +32,7 @@ int	values_of_args(t_all *all, int argc, char *argv[])
     while (argv[i])
     {
         if (ft_is_str_number(argv[i]))
-            return (ft_error("Error: No numbers\n"));
+            return (ft_error("Error: Put numbers please!\n"));
         i++;
     }
 	all->nb_of_philos = ft_atoi(argv[1]);
@@ -63,9 +63,8 @@ int			main(int argc, char **argv)
 {
 	t_all	all;
 	t_philo	*philos;
-	int		i;
 
-	if (!(5 <= argc && argc <= 6))
+	if (5 != argc && argc != 6)
 		return (ft_error("Error: put right number of arguments\n"));
 	if (values_of_args(&all, argc, argv))
         return (1);
@@ -77,12 +76,6 @@ int			main(int argc, char **argv)
 	if (!philos)
 		return (1);
 	init_philos(&all, philos);
-	i = 0;
-	/*while (i < all.nb_of_philos)
-	{
-		pthread_join(philos[i].philo_thread, NULL);
-		i++;
-	}*/
 	clean_table(&all, philos);
 	return (0);
 }

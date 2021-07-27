@@ -51,29 +51,29 @@ void				my_sleep(unsigned long my_time)
 	}
 }
 
-int					qqun_est_mort(t_philo *philo, unsigned long curr_time)
+int					qqun_est_mort(t_philo *philo, unsigned long mnt)
 {
 	if (philo->all->est_mort == 1
-			|| curr_time - philo->last_eat > philo->all->time_to_die)
+			|| mnt - philo->last_eat > philo->all->time_to_die)
 		return (1);
 	return (0);
 }
 
-int print_phrase(t_philo *philo, int value, unsigned long curr_time)
+int print_phrase(t_philo *philo, int value, unsigned long mnt)
 {
 	pthread_mutex_lock(&(philo->all->phrase));
-	if ((value != DEAD && qqun_est_mort(philo, curr_time)))
+	if ((value != DEAD && qqun_est_mort(philo, mnt)))
 	{
 		pthread_mutex_unlock(&(philo->all->phrase));
 		return (1);
 	}
-	printf("%lu\t%d\t", curr_time - philo->all->debut_dinner, philo->pos);
+	printf("%lu\t%d\t", mnt - philo->all->debut_dinner, philo->pos);
 	if (value == TAKE_FORK)
 		printf(" has taken a fork\n");
 	if (value == EATING)
 	{
 		printf(" is eating\n");
-		philo->last_eat = curr_time;
+		philo->last_eat = mnt;
 	}
 	if (value == SLEEPING)
 		printf(" is sleeping\n");
