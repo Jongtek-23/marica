@@ -72,7 +72,7 @@ int			main(int argc, char **argv)
 		return (1);
 	if (table_of_philos(&all))
 		return (ft_error("Error: malloc failed\n"));
-	philos = (t_philo *)malloc((sizeof(t_philo) * all.nb_of_philos));
+	philos = malloc((sizeof(t_philo) * all.nb_of_philos));
 	if (!philos)
 		return (1);
 	init_philos(&all, philos);
