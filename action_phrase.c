@@ -1,15 +1,26 @@
 #include "philo.h"
 
+unsigned long time_manger(void)
+{
+	struct timeval value;
+	unsigned long res;
+
+	gettimeofday(&value, NULL);
+	res = value.tv_sec * 1000;
+	res += value.tv_usec / 1000;
+	return (res);
+}
+
 int  a_manger(t_philo *philo)
 {
 	t_all			*all;
 
 	all = philo->all;
 	pthread_mutex_lock(&all->forks[philo->left]);
-	print_phrase(philo, TAKE_FORK, get_time());
+	print_phrase(philo, TAKE_FORK, time_manger());
 	pthread_mutex_lock(&all->forks[philo->right]);
-	print_phrase(philo, TAKE_FORK, get_time());
-	print_phrase(philo, EATING, get_time());
+	print_phrase(philo, TAKE_FORK, time_manger());
+	print_phrase(philo, EATING, time_manger());
 	my_sleep(philo->all->time_to_eat);
 	pthread_mutex_unlock(&all->forks[philo->left]);
 	pthread_mutex_unlock(&all->forks[philo->right]);
