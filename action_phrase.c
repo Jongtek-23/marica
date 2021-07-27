@@ -6,10 +6,10 @@ int  a_manger(t_philo *philo)
 
 	all = philo->all;
 	pthread_mutex_lock(&all->forks[philo->left]);
-	put_msg(philo, TAKE_FORK, get_time());
+	print_phrase(philo, TAKE_FORK, get_time());
 	pthread_mutex_lock(&all->forks[philo->right]);
-	put_msg(philo, TAKE_FORK, get_time());
-	put_msg(philo, EATING, get_time());
+	print_phrase(philo, TAKE_FORK, get_time());
+	print_phrase(philo, EATING, get_time());
 	my_sleep(philo->all->time_to_eat);
 	pthread_mutex_unlock(&all->forks[philo->left]);
 	pthread_mutex_unlock(&all->forks[philo->right]);
