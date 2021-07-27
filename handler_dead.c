@@ -10,7 +10,7 @@ void	*handler_dead(void *void_philo)
 	{
 		if (philo->count_eat == philo->all->each_must_eat)
 			break ;
-		curr_time = get_time();
+		curr_time = calc_time();
 		if (curr_time - philo->last_eat > philo->all->time_to_die)
 		{
 			pthread_mutex_lock(&philo->all->mourir);

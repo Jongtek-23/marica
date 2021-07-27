@@ -1,6 +1,6 @@
 #include "philo.h"
 
-unsigned long time_manger(void)
+unsigned long calc_time(void)
 {
 	struct timeval value;
 	unsigned long res;
@@ -17,10 +17,10 @@ int  a_manger(t_philo *philo)
 
 	all = philo->all;
 	pthread_mutex_lock(&all->forks[philo->left]);
-	print_phrase(philo, TAKE_FORK, time_manger());
+	print_phrase(philo, TAKE_FORK, calc_time());
 	pthread_mutex_lock(&all->forks[philo->right]);
-	print_phrase(philo, TAKE_FORK, time_manger());
-	print_phrase(philo, EATING, time_manger());
+	print_phrase(philo, TAKE_FORK, calc_time());
+	print_phrase(philo, EATING, calc_time());
 	my_sleep(philo->all->time_to_eat);
 	pthread_mutex_unlock(&all->forks[philo->left]);
 	pthread_mutex_unlock(&all->forks[philo->right]);
@@ -41,10 +41,10 @@ void				my_sleep(unsigned long itime)
 	unsigned long	stime;
 	unsigned long	ctime;
 
-	stime = get_time();
+	stime = calc_time();
 	while (1)
 	{
-		ctime = get_time();
+		ctime = calc_time();
 		if (ctime - stime >= itime)
 			return ;
 		usleep(100);

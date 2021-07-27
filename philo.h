@@ -52,6 +52,7 @@ void	*handler_dead(void *void_philo);
 int print_phrase(t_philo *philo, int status, unsigned long curr_time);
 int  a_manger(t_philo *philo);
 void				my_sleep(unsigned long itime);
+unsigned long calc_time(void);
 
 int ft_is_str_number(char *str);
 int	ft_error(char *str);

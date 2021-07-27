@@ -13,10 +13,10 @@ void    *philosopher(void *arg)
     {
         if (a_manger(philo))
             break ;
-        if (print_phrase(philo, SLEEPING, get_time()))
+        if (print_phrase(philo, SLEEPING, calc_time()))
             break ;
         my_sleep(philo->all->time_to_sleep);
-        if (print_phrase(philo, THINKING, get_time()))
+        if (print_phrase(philo, THINKING, calc_time()))
             break ;
     }
     pthread_join(handler_thread, NULL);
@@ -38,7 +38,7 @@ void    init_philos(t_all *all, t_philo *philos)
 		philos[i].right = i;
 		philos[i].all = all;
         philos[i].count_eat = 0;
-        philos[i].last_eat = get_time();
+        philos[i].last_eat = calc_time();
         pthread_create(&philos[i].philo_thread, NULL, philosopher, &philos[i]);
         i++;
     }

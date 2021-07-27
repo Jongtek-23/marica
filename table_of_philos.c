@@ -17,7 +17,7 @@ int	table_of_philos(t_all *all)
 	pthread_mutex_init(&all->phrase, NULL);
 	pthread_mutex_init(&all->manger, NULL);
 	pthread_mutex_init(&all->mourir, NULL);
-	all->debut_dinner = get_time();
+	all->debut_dinner = calc_time();
 	all->est_mort = 0;
 	return (0);
 }
