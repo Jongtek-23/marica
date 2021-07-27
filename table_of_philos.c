@@ -4,9 +4,8 @@ int	table_of_philos(t_all *all)
 {
 	int		i;
 
-	if (!(all->forks =
-				(pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-					* all->nb_of_philos)))
+	all->forks = malloc(sizeof(pthread_mutex_t) * all->nb_of_philos);
+	if (!all->forks)
 		return (1);
 	i = 0;
 	while (i < all->nb_of_philos)

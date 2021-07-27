@@ -23,29 +23,6 @@ void		clean_table(t_all *all, t_philo *philos)
 	free(philos);
 }
 
-void	free_clean_mutex(t_all *all, t_philo *philos)
-{
-	int	i;
-
-	i = 0;
-	while (i < all->nb_of_philos)
-	{
-		pthread_join(philos[i].philo_thread, NULL);
-		i++;
-	}
-	i = 0;
-	while (i < all->nb_of_philos)
-	{
-		pthread_mutex_destroy(&all->forks[i]);
-		i++;
-	}
-	pthread_mutex_destroy(&all->phrase);
-	pthread_mutex_destroy(&all->manger);
-	pthread_mutex_destroy(&all->mourir);
-	free(all->forks);
-	free(philos);
-}
-
 int	values_of_args(t_all *all, int argc, char *argv[])
 {
     int i;
