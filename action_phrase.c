@@ -36,22 +36,22 @@ int  a_manger(t_philo *philo)
 	return (0);
 }
 
-void				my_sleep(unsigned long itime)
+void				my_sleep(unsigned long my_time)
 {
-	unsigned long	stime;
-	unsigned long	ctime;
+	unsigned long	atime;
+	unsigned long	btime;
 
-	stime = calc_time();
+	atime = calc_time();
 	while (1)
 	{
-		ctime = calc_time();
-		if (ctime - stime >= itime)
+		btime = calc_time();
+		if (btime - atime >= my_time)
 			return ;
 		usleep(100);
 	}
 }
 
-int					is_someone_dead(t_philo *philo, unsigned long curr_time)
+int					qqun_est_mort(t_philo *philo, unsigned long curr_time)
 {
 	if (philo->all->est_mort == 1
 			|| curr_time - philo->last_eat > philo->all->time_to_die)
@@ -59,27 +59,27 @@ int					is_someone_dead(t_philo *philo, unsigned long curr_time)
 	return (0);
 }
 
-int print_phrase(t_philo *philo, int status, unsigned long curr_time)
+int print_phrase(t_philo *philo, int value, unsigned long curr_time)
 {
 	pthread_mutex_lock(&(philo->all->phrase));
-	if ((status != DEAD && is_someone_dead(philo, curr_time)))
+	if ((value != DEAD && qqun_est_mort(philo, curr_time)))
 	{
 		pthread_mutex_unlock(&(philo->all->phrase));
 		return (1);
 	}
-	printf("%lums %d", curr_time - philo->all->debut_dinner, philo->pos);
-	if (status == TAKE_FORK)
+	printf("%lu\t%d\t", curr_time - philo->all->debut_dinner, philo->pos);
+	if (value == TAKE_FORK)
 		printf(" has taken a fork\n");
-	if (status == EATING)
+	if (value == EATING)
 	{
 		printf(" is eating\n");
 		philo->last_eat = curr_time;
 	}
-	if (status == SLEEPING)
+	if (value == SLEEPING)
 		printf(" is sleeping\n");
-	if (status == THINKING)
+	if (value == THINKING)
 		printf(" is thinking\n");
-	if (status == DEAD)
+	if (value == DEAD)
 		printf(" died\n");
 	pthread_mutex_unlock(&(philo->all->phrase));
 	return (0);

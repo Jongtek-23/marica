@@ -57,6 +57,6 @@ unsigned long calc_time(void);
 int ft_is_str_number(char *str);
 int	ft_error(char *str);
 int	ft_atoi(const char *str);
-unsigned long	get_time(void);
+
 
 #endif
