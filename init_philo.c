@@ -7,7 +7,7 @@ void    *philosopher(void *arg)
 
     philo = arg;
     if (philo->pos % 2 == 0)
-        my_sleep(philo->all->time_to_eat - 1);
+        my_sleep(philo->all->time_to_eat);
     pthread_create(&handler_thread, NULL, handler_dead, philo);
     while (1)
     {
