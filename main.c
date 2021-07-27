@@ -7,6 +7,12 @@ void		clean_table(t_all *all, t_philo *philos)
 	i = 0;
 	while (i < all->nb_of_philos)
 	{
+		pthread_join(philos[i].philo_thread, NULL);
+		i++;
+	}
+	i = 0;
+	while (i < all->nb_of_philos)
+	{
 		pthread_mutex_destroy(&all->forks[i]);
 		i++;
 	}
@@ -90,15 +96,16 @@ int			main(int argc, char **argv)
 		return (1);
 	if (table_of_philos(&all))
 		return (ft_error("Error: malloc failed\n"));
-	if (!(philos = (t_philo *)malloc((sizeof(t_philo) * all.nb_of_philos))))
+	philos = (t_philo *)malloc((sizeof(t_philo) * all.nb_of_philos));
+	if (!philos)
 		return (1);
 	init_philos(&all, philos);
 	i = 0;
-	while (i < all.nb_of_philos)
+	/*while (i < all.nb_of_philos)
 	{
 		pthread_join(philos[i].philo_thread, NULL);
 		i++;
-	}
+	}*/
 	clean_table(&all, philos);
 	return (0);
 }
